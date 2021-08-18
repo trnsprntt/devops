@@ -2,7 +2,7 @@
 
 This is a web-application to show current time in Moscow (GMT+3).
 
-![](https://imgur.com/a/699mleD) 
+![](https://i.imgur.com/nWlB99g.png)
 
 ### Built With
 
