@@ -13,19 +13,27 @@ This is a web-application to show current time in Moscow (GMT+3).
 To get the application up and running (locally or in Docker) follow these simple steps.
 
 ### Locally
+
 1. Clone the repo
+
    ```sh
    git clone https://github.com/trnsprntt/devops.git
    ```
+
 2. Install packages
+
    ```sh
    pip install requirements.txt
    ```
+
 3. Go to the application directory
+
    ```sh
    cd current_time_app
    ```
+
 4. Export the necessary variables
+
    ```sh
    #for Mac and Linux users
    export FLASK_APP=current_time_app
@@ -35,13 +43,30 @@ To get the application up and running (locally or in Docker) follow these simple
    set FLASK_APP=current_time_app
    set FLASK_ENV=development
    ```
+
 5. Launch the application
+
    ```sh
    flask run
    ```
+
 6. Go to ```http://localhost:5000/``` and see it's working :)
 
 ### In Docker
+
+1. Pull the image from DockerHub
+
+   ```sh
+   docker pull trnsprntt/current_time_app:latest
+   ```
+
+2. Run the container
+
+   ```sh
+   docker container run -p 5000:5000  trnsprntt/current_time_app:latest
+   ```
+
+3. Go to ```http://localhost:5000/``` and see it's working :)
 
 ## Usage
 
