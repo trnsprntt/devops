@@ -14,7 +14,11 @@
 
 * **Keeping unnecessary files out of  Docker images**
 
-  Use ```.dockerignore``` files 
+  Use ```.dockerignore``` files
+
+* **Mind the order of instructions**
+
+  First execute the ones that are less likely to change, then others
 
 * **Use images scanning by Snyk**
   
