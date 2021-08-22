@@ -1,0 +1,16 @@
+html, body {
+  background-color: #96cfe6;
+  margin:50px;
+  height:100%;
+}
+
+.WelcomeView {
+  background-image: url("img.jpg");
+    /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
