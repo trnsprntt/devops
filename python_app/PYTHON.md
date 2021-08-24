@@ -16,6 +16,10 @@
   
   Style formatting - PEP, static analyzers - SonarCube
 
+* **Collect all the required packages in a single file**
+  
+  And make sure each dependency in ```requirements.txt``` solves one major problem. If there're too many dependencies, the requirements file needs to be updated too often, otherwise, the app would not work after quite a while without updating the versions of packages.
+
 * **Design desicions**
 
   ```sh
@@ -33,4 +37,6 @@
 * **Create readable documentation**
 
 * **Use virtual environments**
+
+* **Use ```.gitignore``` file**
   

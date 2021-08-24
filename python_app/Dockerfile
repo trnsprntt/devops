@@ -7,7 +7,8 @@ RUN pip install -r requirements.txt --no-cache-dir
 ENV FLASK_APP current_time_app.py
 ENV FLASK_ENV development
 
-RUN addgroup -g 1000 flask && adduser -HDs /bin/bash flask -u 1000 -G flask
+RUN adduser -HDs /bin/bash flask 
 USER flask
 COPY --chown=flask:flask . .
+EXPOSE 5000
 ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]
