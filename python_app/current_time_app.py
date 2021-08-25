@@ -4,12 +4,18 @@ import pytz
 
 MOSCOW_TIMEZONE = pytz.timezone('Europe/Moscow')
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
 
-@app.route('/')
-def index():
-    moscow_now = datetime.now(MOSCOW_TIMEZONE)
-    return render_template('index.html',
-                            time = moscow_now.strftime('%H:%M:%S'),
-                            date = moscow_now.strftime('%d-%m-%Y'))
+    @app.route('/')
+    def index():
+        moscow_now = datetime.now(MOSCOW_TIMEZONE)
+        return render_template('index.html',
+                                time = moscow_now.strftime('%H:%M:%S'),
+                                date = moscow_now.strftime('%d-%m-%Y'))
+
+    return app
+
+
+
                             

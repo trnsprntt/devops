@@ -4,7 +4,7 @@ WORKDIR /python_app
 COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
-ENV FLASK_APP current_time_app.py
+ENV FLASK_APP current_time_app
 ENV FLASK_ENV development
 
 RUN adduser -HDs /bin/bash flask 
