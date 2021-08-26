@@ -81,8 +81,8 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-      - uses: azure/container-scan@v0
       - name: Scan image
+        uses: azure/container-scan@v0
         with:
           image-name: current_time_app:latest
           username: ${{ secrets.DOCKERHUB_USERNAME }}
