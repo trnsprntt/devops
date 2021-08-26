@@ -86,4 +86,4 @@ jobs:
         with:
           image-name: current_time_app:latest
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.DOCKER_TOKEN }}
