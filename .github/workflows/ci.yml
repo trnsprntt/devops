@@ -72,7 +72,7 @@ jobs:
           context: ./python_app
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/current_time_app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/current_time_app:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
       - name: Image digest
