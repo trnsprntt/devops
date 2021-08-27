@@ -1,3 +1,5 @@
+![ci_workflow](https://github.com/trnsprntt/devops/actions/workflows/ci.yml/badge.svg)
+
 ## Description
 
 This is a web-application to show current time in Moscow (GMT+3).
