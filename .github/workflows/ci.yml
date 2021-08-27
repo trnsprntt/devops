@@ -45,6 +45,8 @@ jobs:
   docker:
     needs: ["test", "lint"]
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./python_app
     steps:
       # Check out code
       - name: Checkout
@@ -56,7 +58,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          context: ./python_app
+          #context: ./python_app
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
@@ -70,7 +72,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./python_app
+          #context: ./python_app
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/current_time_app:latest
