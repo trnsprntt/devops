@@ -1,3 +1,5 @@
+# DevOps course at Innopolis University F21
+
 ![ci_workflow](https://github.com/trnsprntt/devops/actions/workflows/ci.yml/badge.svg)
 
 ## Description
