@@ -2,5 +2,3 @@ Flask==2.0.1
 pytz
 pytest
 freezegun
-random
-
