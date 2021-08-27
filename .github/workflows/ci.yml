@@ -88,9 +88,19 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-      - name: Scan image
-        uses: azure/container-scan@v0
+            - name: Run Trivy vulnerability scanner
+      - name: Scan Docker image
+        uses: aquasecurity/trivy-action@master
         with:
-          image-name: current_time_app:latest
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          image-ref: 'docker.io/trnsprntt/current_time_app:latest'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+#     - name: Scan image
+#       uses: azure/container-scan@v0
+#       with:
+#         # image-name: ${{ env.loginServerUrl }}/my-image:tag # ${{ env.loginServerUrl }}/ would be empty if it's hosted on dockerhub
+#         image-name: current_time_app:latest
+#         username: ${{ secrets.DOCKERHUB_USERNAME }}
+#         password: ${{ secrets.DOCKER_TOKEN }}
