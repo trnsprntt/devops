@@ -31,13 +31,16 @@ pipeline {
         }
         def app
         stage('Build and push') {
-            dir("${workdir}") {
-                script {
-                    app = docker.build('$docker')
-                    docker.withRegistry('https://registry.hub.docker.com', 'git') {
-                        app.push("${env.BUILD_NUMBER}")
+            steps {
+                dir("${workdir}") {
+                    script {
+                        app = docker.build('$docker')
+                        docker.withRegistry("https://registry.hub.docker.com", "git") {
+                            app.push("${env.BUILD_NUMBER}")
+                        }
                     }
                 }
+            }
         }
     }
 }
