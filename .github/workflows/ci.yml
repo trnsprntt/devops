@@ -46,6 +46,20 @@ jobs:
             -Dsonar.organization=trnsprntt
             -Dsonar.projectKey=trnsprntt_devops
             -Dsonar.sources=. 
+            
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest --junitxml=junit/test-results.xml
+        
   docker:
     needs: ["test", "lint"]
     runs-on: ubuntu-latest
@@ -94,10 +108,3 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL'
-#     - name: Scan image
-#       uses: azure/container-scan@v0
-#       with:
-#         # image-name: ${{ env.loginServerUrl }}/my-image:tag # ${{ env.loginServerUrl }}/ would be empty if it's hosted on dockerhub
-#         image-name: current_time_app:latest
-#         username: ${{ secrets.DOCKERHUB_USERNAME }}
-#         password: ${{ secrets.DOCKER_TOKEN }}
