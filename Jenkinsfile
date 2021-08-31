@@ -9,7 +9,7 @@ pipeline {
         docker = "trnsprntt/devops"
     }
     stages {
-
+        def app
         stage('Prepare environment') {
             steps {
                 checkout scm
@@ -29,7 +29,6 @@ pipeline {
                 )
             }
         }
-        def app
         stage('Build and push') {
             steps {
                 dir("${workdir}") {
