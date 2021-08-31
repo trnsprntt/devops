@@ -12,6 +12,7 @@ pipeline {
         stage('Prepare environment') {
             steps {
                 checkout scm
+                sh 'ls'
                 sh 'pip install -r $workdir/requirements.txt'
             }
         }
