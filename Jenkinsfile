@@ -9,7 +9,6 @@ pipeline {
         docker = "trnsprntt/devops"
     }
     stages {
-        def app
         stage('Prepare environment') {
             steps {
                 checkout scm
@@ -33,7 +32,7 @@ pipeline {
             steps {
                 dir("${workdir}") {
                     script {
-                        app = docker.build('$docker')
+                        def app = docker.build('$docker')
                         docker.withRegistry("https://registry.hub.docker.com", "git") {
                             app.push("${env.BUILD_NUMBER}")
                         }
