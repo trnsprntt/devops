@@ -47,6 +47,7 @@ jobs:
             -Dsonar.projectKey=trnsprntt_devops
             -Dsonar.sources=. 
             
+      - uses: actions/checkout@v2      
       - name: Cache pip
         uses: actions/cache@v2
         with:
