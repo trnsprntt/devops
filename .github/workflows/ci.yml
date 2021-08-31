@@ -55,6 +55,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
             ${{ runner.os }}-
+      - name: Which directory
+        run: ls
       - name: Install dependencies
         run: pip install -r python_app/requirements.txt
       - name: Run tests
