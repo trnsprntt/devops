@@ -5,7 +5,7 @@ pipeline {
         } 
     }
     environment {
-        workdir = "app_python"
+        workdir = "python_app"
         docker = "trnsprntt/devops"
     }
     stages {
