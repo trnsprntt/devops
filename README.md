@@ -72,6 +72,23 @@ To get the application up and running (locally or in Docker) follow these simple
 
 3. Go to ```http://localhost:5000/``` and see it's working :)
 
+## Testing
+
+1. Prerequisites
+   ```
+   pytest
+   ```
+
+2. Go to the project directory
+   ```
+   cd devops/python_app
+   ```
+
+3. Run unit tests
+   ```
+   pytest tests
+   ```
+
 ## Usage
 
 Refresh the page to update the time
