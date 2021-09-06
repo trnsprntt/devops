@@ -1,0 +1,5 @@
+deploy_image_image: trnsprntt/current_time_app
+deploy_image_tag: latest
+deploy_image_container_port: 5000
+deploy_image_host_port: 5000
+deploy_image_app_folder: /opt/python_app/

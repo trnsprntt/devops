@@ -1,0 +1,7 @@
+version: '3'
+services:
+  python_app:
+    image: {{ deploy_image_image }}:{{ deploy_image_tag }}
+    ports:
+      - "{{ deploy_image_container_port }}:{{ deploy_image_host_port }}"
+    restart: always

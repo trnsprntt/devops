@@ -5,4 +5,9 @@
     username: ubuntu
 
   roles:
-    - role: ../roles/docker
+    - role: docker
+      vars:
+        docker_users:
+          - "{{ username }}"
+
+    - role: deploy_image
