@@ -1,0 +1,24 @@
+- include_tasks: setup
+
+- name: 'install docker'
+  apt:
+    name: 'docker-ce={{ docker_version }}'
+    state: 'present'
+  notify: restart docker
+
+- name: 'enable docker systemd service'
+  service:
+    name: 'docker'
+    state: 'started'
+    enabled: 'yes'
+
+- name: 'set periodic docker system prune'
+  cron:
+    name: 'docker-prune'
+    minute: '0'
+    hour: '*/2'
+    job: 'docker container prune -f'
+
+- include_tasks: docker_compose.yml
+
+- include_tasks: docker-users.yml
