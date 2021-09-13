@@ -1,0 +1,135 @@
+version: "2.4"
+
+x-logging: &logging
+  logging:
+    driver: "json-file"
+    options:
+        max-size: '100m'
+        max-file: '5' 
+        tag: "{{.ImageName}}|{{.Name}}"
+
+networks:
+  loki:
+
+services:
+  loki:
+    container_name: loki
+    image: grafana/loki:${LOKI_VERSION}
+    expose:
+      - 3100
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki.yml:/etc/loki/loki.yml
+    command: -config.file=/etc/loki/loki.yml
+    networks:
+      - loki
+    restart: unless-stopped
+    <<: *logging
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:${LOKI_VERSION}
+    expose:
+      - 9080
+    ports:
+      - "9080:9080"
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - ./promtail.yml:/etc/promtail/promtail.yml
+    command: -config.file=/etc/promtail/promtail.yml
+    networks:
+      - loki
+    restart: unless-stopped
+    <<: *logging
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:${GRAFANA_VERSION}
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
+    restart: unless-stopped
+    <<: *logging
+
+  python_app:
+    container_name: application
+    image: trnsprntt/current_time_app:${APP_VERSION}
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - loki
+    restart: unless-stopped
+    <<: *logging
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+    networks:
+      - loki
+    <<: *logging
+
+
+
+
+# version: '2.4'
+
+# networks:
+#   logging:
+
+# services:
+#   app:
+#     image: trnsprntt/current_time_app:${APP_VERSION}
+#     container_name: monitoring-app
+#     ports:
+#       - "8000:8000"
+#     networks:
+#       - logging
+#     logging:
+#       driver: "json-file"
+#       options:
+#         tag: "{{ .ImageName }}|{{ .Name }}"
+
+#   loki:
+#     image: grafana/loki:${LOKI_VERSION}
+#     container_name: monitoring-loki
+#     ports:
+#       - "3100:3100"
+#     volumes:
+#       - ./loki.yml:/etc/loki/loki.yml
+#     command: -config.file=/etc/loki/loki.yml
+#     networks:
+#       - logging
+
+#   promtail:
+#     image: grafana/promtail:${LOKI_VERSION}
+#     container_name: monitoring-promtail
+#     ports:
+#       - "9080:9080"
+#     volumes:
+#       - /var/lib/docker/containers:/var/lib/docker/containers
+#       - ./promtail.yml:/etc/promtail/promtail.yml
+#     command: -config.file=/etc/promtail/promtail.yml
+#     networks:
+#       - logging
+
+#   grafana:
+#     image: grafana/grafana:latest
+#     container_name: monitoring-grafana
+#     ports:
+#       - "3000:3000"
+#     networks:
+#       - logging
