@@ -38,3 +38,13 @@ kubectl get svc
 **DaemonSet** is a controller that ensures that the pod runs on all the nodes of the cluster. If a node is added or removed from a cluster, DaemonSet automatically manages the same atste on all the other nodes.
 
 **Persistent Volume Claim** is like a virtual Persistent Volume. PVC is capable of requesting a specific type of resources in a Persistent Volume such as a particular size or permissions.
+
+## Helm
+
+![](https://i.imgur.com/WjkjVF7.png)
+
+### Bonus
+
+![](https://i.imgur.com/dTK6Axj.png)
+
+Helm charts were originally invented to reduce the need to repeat yourself while dealing with Kubernetes manifests. So **Library Charts** went even further and intend to help developers follow DRY principle in Helm charts. Code snippets could be shared along using Library charts. 

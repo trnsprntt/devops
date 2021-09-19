@@ -1,0 +1,52 @@
+replicaCount: 3
+
+image:
+  repository: trnsprntt/nodejs_app
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+  exposed_port: 8000
+
+imagePullSecrets: []
+nameOverride: "nodejs-app"
+fullnameOverride: "nodejs-app-chart"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "nodejsapp"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: LoadBalancer
+  port: 8000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
