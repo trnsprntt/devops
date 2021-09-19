@@ -1,3 +1,7 @@
+## Minikube
+
+###### To make LoadBalancer run locally (my system is not attached to any cloud provider with LB service available) I ran `minikube tunnel` 
+
 #### Output before configuration files creation:
 
 ```
@@ -6,7 +10,8 @@ kubectl get pods
 kubectl get svc
 ```
 
-![](https://i.imgur.com/4EkLMyK.png)
+![](https://i.imgur.com/nTtuzZi.png)
+
 
 #### Output after configuration files creation:
 
@@ -16,13 +21,12 @@ kubectl get pods
 kubectl get svc
 ```
 
-![](https://i.imgur.com/348bgsL.png)
+![](https://i.imgur.com/tN0DaDU.png)
 
 
 ### Bonus
 
-![](https://i.imgur.com/IGcUJb1.png)
-
+![](https://i.imgur.com/sgb7iHR.png)
 
 
 **Ingress** is an API object that makes it possible to manage all the routing rules from a single resource. The request from outside the cluster at first comes to the ingress controller and only after that, according to a routing rule defined in ingress, reaches Kubernetes services.
