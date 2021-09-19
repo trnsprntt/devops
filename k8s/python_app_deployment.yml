@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: python-app
+  minReadySeconds: 5
+  replicas: 3
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - image: trnsprntt/current_time_app:latest
+        imagePullPolicy: IfNotPresent
+        name: python-app
+        ports:
+          - name: web
+            containerPort: 5000
+            protocol: TCP
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30 

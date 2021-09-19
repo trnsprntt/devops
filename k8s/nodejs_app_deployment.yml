@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nodejs-app
+  minReadySeconds: 5
+  replicas: 3
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - image: trnsprntt/nodejs_app:latest
+        imagePullPolicy: IfNotPresent
+        name: nodejs-app
+        ports:
+          - name: web
+            containerPort: 8000
+            protocol: TCP
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30 
