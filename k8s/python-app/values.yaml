@@ -37,7 +37,25 @@ ingress:
           pathType: ImplementationSpecific
   tls: []
 
-resources: {}
+secrets:
+  name: lab-11-password
+  password: super-secret-lab-11-password
+
+env:
+  secretName:
+    bonus-secret
+  secretVariables:
+    ENV_VAR1: var1
+    ENV_VAR2: var2
+    ENV_VAR3: var3
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
 
 autoscaling:
   enabled: false

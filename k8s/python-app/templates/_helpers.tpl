@@ -1,3 +1,18 @@
+{{/* 
+Generate env variables
+*/}}
+{{- define "python-app.list-env-variables" }}
+{{- range $key, $val := .Values.env.secretVariables }}
+- name: {{ $key }}
+  valueFrom:
+    secretKeyRef:
+      name: bonus-secret
+      key: {{ $key }}
+{{- end }}
+{{- end }}
+
+
+
 {{/*
 Expand the name of the chart.
 */}}
