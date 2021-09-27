@@ -2,10 +2,11 @@ replicaCount: 3
 
 image:
   repository: trnsprntt/current_time_app
-  pullPolicy: IfNotPresent
+  pullPolicy: Always #IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
   exposed_port: 5000
+  workdir: /home/python_app/
 
 imagePullSecrets: []
 nameOverride: "python-app"

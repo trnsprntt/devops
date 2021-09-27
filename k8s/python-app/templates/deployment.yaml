@@ -54,6 +54,13 @@ spec:
                   name: {{ .Values.secrets.name }}
                   key: password
             {{- include "python-app.list-env-variables" . | nindent 12 }}
+          volumeMounts:
+            - name: configmap-volume
+              mountPath: {{ .Values.image.workdir }}
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: {{ include "python-app.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
