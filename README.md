@@ -67,7 +67,7 @@ To get the application up and running (locally or in Docker) follow these simple
 2. Run the container
 
    ```sh
-   docker container run -p 5000:5000  trnsprntt/current_time_app:latest
+   docker container run -p 5000:5000  -v static:/home/python_app/static trnsprntt/current_time_app:latest
    ```
 
 3. Go to ```http://localhost:5000/``` and see it's working :)
