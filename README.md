@@ -91,7 +91,9 @@ To get the application up and running (locally or in Docker) follow these simple
 
 ## Usage
 
-Refresh the page to update the time
+Refresh the ```localhost:5000/``` to update the time
+
+Go to ```localhost:5000/visits``` to see the journal of base endpoint accesses
 
 ## Roadmap
 
