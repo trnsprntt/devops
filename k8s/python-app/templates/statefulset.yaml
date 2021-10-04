@@ -1,13 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "python-app.fullname" . }}
   labels:
     {{- include "python-app.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  podManagementPolicy: {{ .Values.statefulSet.podManagementPolicy }}
+  serviceName: {{ .Values.service.name }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "python-app.selectorLabels" . | nindent 6 }}
@@ -55,12 +55,8 @@ spec:
                   key: password
             {{- include "python-app.list-env-variables" . | nindent 12 }}
           volumeMounts:
-            - name: configmap-volume
+            - name: visits-static-file
               mountPath: {{ .Values.image.workdir }}
-      volumes:
-        - name: configmap-volume
-          configMap:
-            name: {{ include "python-app.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -73,3 +69,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+  volumeClaimTemplates:
+      - metadata:
+          name: visits-static-file
+        spec:
+          {{- toYaml .Values.statefulSet.volumeClaimTemplates.spec | nindent 10 }}

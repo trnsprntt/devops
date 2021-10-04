@@ -26,6 +26,7 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 5000
+  name: python-app-service
 
 ingress:
   enabled: false
@@ -69,3 +70,13 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+statefulSet:
+  volumeClaimTemplates:
+    spec: 
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 512M
+  podManagementPolicy: "Parallel"
+
